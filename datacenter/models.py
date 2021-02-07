@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+from django.utils.timezone import utc, localtime
 
 
 class Passcard(models.Model):
@@ -25,3 +27,18 @@ class Visit(models.Model):
             entered=self.entered_at,
             leaved= "leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
+
+
+def get_duration(visit):
+    now = datetime.datetime.utcnow().replace(tzinfo=utc)
+    entered_at = visit.entered_at
+    duration = now - entered_at
+    return duration
+
+
+def is_visit_long(visit, minutes=60):
+    if visit.leaved_at:
+        if (visit.leaved_at - visit.entered_at).seconds > (minutes * 60):
+            return True
+        else:
+            return False
