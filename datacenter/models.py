@@ -38,7 +38,4 @@ def get_duration(visit):
 
 def is_visit_long(visit, minutes=60):
     if visit.leaved_at:
-        if (visit.leaved_at - visit.entered_at).seconds > (minutes * 60):
-            return True
-        else:
-            return False
+        return (visit.leaved_at - visit.entered_at).seconds > (minutes * 60)
