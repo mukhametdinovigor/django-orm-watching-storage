@@ -25,18 +25,16 @@ class Visit(models.Model):
         return "{user} entered at {entered} {leaved}".format(
             user=self.passcard.owner_name,
             entered=self.entered_at,
-            leaved= "leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
+            leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
+    def get_duration(visit):
+        now = datetime.utcnow().replace(tzinfo=utc)
+        entered_at = visit.entered_at
+        duration = now - entered_at
+        return duration
 
-def get_duration(visit):
-    now = datetime.utcnow().replace(tzinfo=utc)
-    entered_at = visit.entered_at
-    duration = now - entered_at
-    return duration
-
-
-def is_visit_long(visit, minutes=60):
-    if visit.leaved_at:
-        return (visit.leaved_at - visit.entered_at).seconds > (minutes * 60)
-    return datetime.now()
+    def is_visit_long(visit, minutes=60):
+        if visit.leaved_at:
+            return (visit.leaved_at - visit.entered_at).seconds > (minutes * 60)
+        return datetime.now()

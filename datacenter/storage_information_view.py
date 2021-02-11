@@ -1,5 +1,4 @@
 from datacenter.models import Visit
-from datacenter.models import get_duration
 from django.shortcuts import render
 
 
@@ -12,7 +11,7 @@ def storage_information_view(request):
     non_closed_visits = []
     not_leaved = Visit.objects.filter(leaved_at=None)
     for person in not_leaved:
-        duration = get_duration(person)
+        duration = Visit.get_duration(person)
         formatted_duration = format_duration(duration)
         non_closed_visits.append(
             {
