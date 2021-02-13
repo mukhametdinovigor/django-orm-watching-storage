@@ -28,13 +28,13 @@ class Visit(models.Model):
             leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
-    def get_duration(visit):
-        now = datetime.utcnow().replace(tzinfo=utc)
-        entered_at = visit.entered_at
-        duration = now - entered_at
+    def get_duration(self):
+        if self.leaved_at:
+            duration = self.leaved_at - self.entered_at
+        else:
+            now = datetime.utcnow().replace(tzinfo=utc)
+            duration = now - self.entered_at
         return duration
 
-    def is_visit_long(visit, minutes=60):
-        if visit.leaved_at:
-            return (visit.leaved_at - visit.entered_at).total_seconds() > (minutes * 60)
-        return datetime.now()
+    def is_visit_long(self, minutes=60):
+        return self.get_duration().total_seconds() > minutes * 60
