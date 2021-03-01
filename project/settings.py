@@ -1,14 +1,16 @@
 import os
-from dotenv import load_dotenv
+from environs import Env
 
-BASEDIR = os.path.abspath(os.path.dirname(__file__)).rsplit('\\', 1)[0]
-load_dotenv(os.path.join(BASEDIR, '.env'))
+env = Env()
+env.read_env()
 
-database_host = os.getenv('DATABASE_HOST')
-database_name = os.getenv('DATABASE_NAME')
-database_user = os.getenv('DATABASE_USER')
-database_password = os.getenv('DATABASE_PASSWORD')
-secret_key = os.getenv('SECRET_KEY')
+database_host = env('DATABASE_HOST')
+database_name = env('DATABASE_NAME')
+database_user = env('DATABASE_USER')
+database_password = env('DATABASE_PASSWORD')
+secret_key = env('SECRET_KEY')
+debug = env.bool('DEBUG')
+
 
 DATABASES = {
     'default': {
@@ -25,7 +27,7 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = secret_key
 
-DEBUG = True
+DEBUG = debug
 
 ROOT_URLCONF = "project.urls"
 
