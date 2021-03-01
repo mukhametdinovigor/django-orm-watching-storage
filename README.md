@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 - Run scripts in command line:
 ```
-python3 main.py
+python3 manage.py runserver
 ```
 - Open the URL http://127.0.0.1:8000/ in your browser.
 
