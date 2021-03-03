@@ -17,7 +17,7 @@ look like this:
  - DATABASE_PASSWORD=osim5
  - SECRET_KEY=REPLACE_ME
  - DEBUG=True
- -ALLOWED_HOSTS=['*']
+ - ALLOWED_HOSTS=['*']
 ```
 
 Python3 should be already installed. 
