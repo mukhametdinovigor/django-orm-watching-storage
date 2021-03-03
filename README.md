@@ -6,17 +6,18 @@ a security console, it shows who is in the storage of the bank now, a list of ac
 ## How to install.
 
 Download code. For this project you need such environment variables: `DATABASE_HOST, DATABASE_PORT, DATABASE_NAME, DATABASE_USER,
-DATABASE_PASSWORD, SECRET_KEY, DEBUG`. Put them into .env file, and assign them according values. It should 
+DATABASE_PASSWORD, SECRET_KEY, DEBUG, ALLOWED_HOSTS`. Put them into .env file, and assign them according values. It should 
 look like this:
 
 ```
  - DATABASE_HOST=checkpoint.devman.org 
- - DATABASE_PORT=5434
+ - DATABASE_PORT=5434**
  - DATABASE_NAME=checkpoint
  - DATABASE_USER=guard
  - DATABASE_PASSWORD=osim5
  - SECRET_KEY=REPLACE_ME
  - DEBUG=True
+ -ALLOWED_HOSTS=['*']
 ```
 
 Python3 should be already installed. 
