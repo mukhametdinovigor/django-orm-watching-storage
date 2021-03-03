@@ -5,7 +5,20 @@ a security console, it shows who is in the storage of the bank now, a list of ac
 
 ## How to install.
 
-Download code. Python3 should be already installed. 
+Download code. For this project you need such environment variables: `DATABASE_HOST, DATABASE_NAME, DATABASE_USER,
+DATABASE_PASSWORD, SECRET_KEY, DEBUG`. Put them into .env file, and assign them according values. It should 
+look like this:
+
+```
+ - DATABASE_HOST=checkpoint.devman.org 
+ - DATABASE_NAME=checkpoint
+ - DATABASE_USER=guard
+ - DATABASE_PASSWORD=osim5
+ - SECRET_KEY=REPLACE_ME
+ - DEBUG=True
+```
+
+Python3 should be already installed. 
 Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 
 ```
